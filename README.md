@@ -42,6 +42,12 @@ Things you may want to cover:
 |email|string|null: false, foreign_key: true|
 |name|string|null: false, foreign_key: true|
 
+### Association
+- has_many :messages
+- has_many :members
+- has_many :groups, through: members
+
+
 # messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -49,3 +55,20 @@ Things you may want to cover:
 |image|string||
 |group_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
+
+### Association
+belongs_to :group
+belongs_to :user
+
+# groupテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false, foreign_key: true|
+
+### Association
+- has_many :members
+- has_many :users, through: :members
+- has_many :message
+
