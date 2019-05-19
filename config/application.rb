@@ -13,6 +13,6 @@ module ChatSpace
       g.javascripts false
       g.helper false
       g.test_framework false
-    end files in that directory are automatically loaded.
+    end 
   end
 end
