@@ -1,24 +1,13 @@
 %wrapper
   .chat-side
-    .side-header
-      .side-header__box
-        %p.side-header__box__user-name nagano
-        %ul.side-header__box__menu
-          %li
-            = link_to "/groups/new" do
-              %i.fas.fa-edit
-          %li
-            = link_to "/users/440/edit" do
-              %i.fas.fa-cog
-    .groups  
-      = render "group"
+    = render "devise/shared/side_bar"
   .chat-main
     .main-header
       %div.main-header__left-box
         %h2.main-header__left-box__current-group test
         %ul.main-header__left-box__member-list
           %li.main-header__left-box__member-list__member Member : tomo
-      = link_to "/groups/891/edit" do     
+      = link_to "edit" do     
         %div.main-header__edit-btn Edit
     .messages   
       = render "messages"

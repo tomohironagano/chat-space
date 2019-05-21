@@ -1,0 +1,22 @@
+%wrapper
+  .chat-side
+    = render "devise/shared/side_bar"
+  -# .chat-main
+  -#   .main-header
+  -#     %div.main-header__left-box
+  -#       %h2.main-header__left-box__current-group test
+  -#       %ul.main-header__left-box__member-list
+  -#         %li.main-header__left-box__member-list__member Member : tomo
+  -#     = link_to "edit" do     
+  -#       %div.main-header__edit-btn Edit
+  -#   .messages   
+  -#     = render "messages"
+      
+  -#   .form
+  -#     %form.new_message{enctype: "multipart/form-data", method: "post"}
+  -#       .input-box
+  -#         %input.input-box__text{name: "message[content]", placeholder: "type a message", type: "text"}
+  -#         %label.input-box__image{for: "message_image"}
+  -#           %i.fa.fa-image
+  -#           %input.input-box__image__file{id: "message_image", type: "file"}
+  -#       %input.submit-btn{"data-disable-with" => "Send", name: "commit", type: "submit", value: "Send"}
