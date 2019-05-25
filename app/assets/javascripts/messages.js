@@ -36,14 +36,7 @@ $(document).on('turbolinks:load', function(){
       var html = buildHTML(data);
       $('.messages').append(html);
       $('#new_message')[0].reset();
-      scrollBottom();
-      function scrollBottom(){
-        var target = $('.message').last();
-        var position = target.offset().top + $('.messages').scrollTop();
-        $('.messages').animate({
-          scrollTop: position
-        }, 300, 'swing');
-      }
+      $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight}, 'fast');
     })
     .fail(function(data){
       alert('自動更新に失敗しました');
