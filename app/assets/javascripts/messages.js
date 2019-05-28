@@ -23,7 +23,6 @@ $(document).on('turbolinks:load', function(){
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var message = new FormData(this);
-    // var url = (window.location.href);
     var url = $(this).attr('action')
     $.ajax({
       url: url,
@@ -36,7 +35,6 @@ $(document).on('turbolinks:load', function(){
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html);
-      // $('#new_message')[0].reset();
       $('form')[0].reset();
       $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight}, 'fast');
     })
