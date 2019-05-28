@@ -1,14 +1,14 @@
 $(document).on('turbolinks:load', function(){
   function buildHTML(message) {
     var content = message.content ? `${ message.content }` : "";
-    var img = message.image ? `<img src= ${ message.image }>` : "";
-    var html = `<div class="message">
+    var img = message.image.url ? `<img src= ${ message.image.url }>` : "";
+    var html = `<div class="message" data-id="${message.id}">
                   <div class="upper-message">
                     <p class="upper-message__user-name">
                       ${message.user_name}
                     </p>
                     <p class="upper-message__date">
-                      ${message.date}
+                      ${message.created_at}
                     </p>
                   </div>
                   <p class="lower-meesage">
@@ -23,7 +23,8 @@ $(document).on('turbolinks:load', function(){
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var message = new FormData(this);
-    var url = (window.location.href);
+    // var url = (window.location.href);
+    var url = $(this).attr('action')
     $.ajax({
       url: url,
       type: 'POST',
@@ -35,7 +36,8 @@ $(document).on('turbolinks:load', function(){
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html);
-      $('#new_message')[0].reset();
+      // $('#new_message')[0].reset();
+      $('form')[0].reset();
       $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight}, 'fast');
     })
     .fail(function(data){
@@ -45,4 +47,24 @@ $(document).on('turbolinks:load', function(){
       $('.form__submit').prop('disabled', false);
     })
   })
-});
+  var reloadMessages = function() {
+    last_message_id = $('.message:last').data('id');
+    $.ajax({
+      url: 'api/messages',
+      type: 'get',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+        messages.forEach(function(message){
+        var insertHTML = buildHTML(message);
+        $('.messages').append(insertHTML);
+        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+      })
+    })
+    .fail(function() {
+     alert('error');
+    });
+  };
+  setInterval(reloadMessages, 5000);
+}); 
