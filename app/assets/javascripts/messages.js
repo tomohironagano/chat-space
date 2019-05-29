@@ -4,19 +4,19 @@ $(document).on('turbolinks:load', function(){
     var img = message.image.url ? `<img src= ${ message.image.url }>` : "";
     var html = `<div class="message" data-id="${message.id}">
                   <div class="upper-message">
-                    <p class="upper-message__user-name">
+                    <div class="upper-message__user-name">
                       ${message.user_name}
-                    </p>
-                    <p class="upper-message__date">
-                      ${message.created_at}
-                    </p>
-                  </div>
-                  <p class="lower-message">
-                    <div>
-                    ${content}
                     </div>
+                    <div class="upper-message__date">
+                      ${message.created_at}
+                    </div>
+                  </div>
+                  <div class="lower-message">
+                    <p class="lower-message__content">
+                    ${content}
+                    </p>
                     ${img}
-                  </p>
+                  </div>
                 </div>`
   return html;
   }
